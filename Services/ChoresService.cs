@@ -2,21 +2,21 @@ namespace chorescore.Services;
 
 public class ChoresService
 {
-  private readonly FakeDb _db;
+  private readonly ChoresRepository _choresRepo;
 
-  public ChoresService(FakeDb db)
+  public ChoresService(ChoresRepository choresRepo)
   {
-    _db = db;
+    _choresRepo = choresRepo;
   }
 
   public List<Chore> GetChores()
   {
-    return _db.Chores;
+    return _choresRepo.GetChores();
   }
 
-  public Chore GetChore(string id)
+  public Chore GetChore(int id)
   {
-    var chore = _db.Chores.Find(c => c.Id == id);
+    var chore = _choresRepo.GetChore(id);
     if (chore == null)
     {
       throw new Exception("Invalid Id");
@@ -26,20 +26,18 @@ public class ChoresService
 
   public Chore AddChore(Chore choreData)
   {
-    _db.Chores.Add(choreData);
+    _choresRepo.AddChore(choreData);
     return choreData;
   }
 
-  public Chore RemoveChore(string id)
+  public string RemoveChore(int id)
   {
-    var chore = GetChore(id);
-    _db.Chores.Remove(chore);
-    return chore;
+    return _choresRepo.RemoveChore(id);
   }
 
-  public Chore EditChore(string id, Chore choreData)
+  public Chore EditChore(int id, Chore choreData)
   {
-    var chore = _db.Chores.Find(c => c.Id == id);
+    var chore = _choresRepo.UpdateChore(id, choreData);
     return chore;
   }
 }

@@ -28,7 +28,7 @@ public class ChoresController : ControllerBase
   }
 
   [HttpGet("{id}")]
-  public ActionResult<Chore> GetChore(string id)
+  public ActionResult<Chore> GetChore(int id)
   {
     try
     {
@@ -54,7 +54,7 @@ public class ChoresController : ControllerBase
     }
   }
   [HttpDelete]
-  public ActionResult<Chore> RemoveChore(string id)
+  public ActionResult<Chore> RemoveChore(int id)
   {
     try
     {
@@ -67,7 +67,7 @@ public class ChoresController : ControllerBase
     }
   }
   [HttpPut]
-  public ActionResult<Chore> EditChore(string id, [FromBody] Chore choreData)
+  public ActionResult<Chore> EditChore(int id, [FromBody] Chore choreData)
   {
     try
     {

@@ -29,13 +29,13 @@ public class Startup
       c.SwaggerDoc("v1", new OpenApiInfo { Title = "Jot", Version = "v1" });
     });
     services.AddSingleton<Auth0Provider>();
-    services.AddSingleton<FakeDb>();
     services.AddScoped<IDbConnection>(x => CreateDbConnection());
 
     services.AddScoped<AccountsRepository>();
     services.AddScoped<AccountService>();
 
     services.AddTransient<ChoresService>();
+    services.AddTransient<ChoresRepository>();
   }
 
   private void ConfigureCors(IServiceCollection services)
